@@ -38,6 +38,9 @@ using AnnuliOrthogonalPolynomials, StaticArrays, QuadGK, Test
                 @test x * P[𝐱,Block(n+1)[k+1]] ≈ X_R.dv[1]*P[𝐱,Block(n+1)[k+1]] + X_R.ev[1]*P[𝐱,Block(n+2)[k+1]]
             end
         end
+
+        X = jacobimatrix(Val(1), P)
+        @test x * P[𝐱,Block.(1:4)]' ≈ P[𝐱,Block.(1:5)]' * X[Block.(1:5),Block.(1:4)]
     end
 
 end
