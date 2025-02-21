@@ -54,6 +54,8 @@ JacobiDiskSlice(α::R, a::T, b::V) where {R,T,V} = JacobiDiskSlice{float(promote
 JacobiDiskSlice{T}(α) where T = JacobiDiskSlice{T}(α, zero(α), zero(α))
 JacobiDiskSlice(α) = JacobiDiskSlice(α, zero(α), zero(α))
 
+convert(::Type{AbstractQuasiMatrix{T}}, P::JacobiDiskSlice) where T = JacobiDiskSlice{T}(P.α, P.a, P.b)
+
 ==(w::JacobiDiskSlice, v::JacobiDiskSlice) = w.α == v.α && w.a == v.a && w.b == v.b
 
 axes(P::JacobiDiskSlice{T}) where T = (Inclusion(DiskSlice(P.α)),blockedrange(oneto(∞)))
