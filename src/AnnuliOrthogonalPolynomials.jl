@@ -10,7 +10,7 @@ import BandedMatrices: _BandedMatrix
 import BlockArrays: block, blockindex, _BlockedUnitRange, blockcolsupport, BlockSlice
 import BlockBandedMatrices: blockbandwidths, subblockbandwidths, AbstractBandedBlockBandedLayout, AbstractBandedBlockBandedMatrix
 import ClassicalOrthogonalPolynomials: checkpoints, ShuffledR2HC, TransformFactorization, ldiv, paddeddata, jacobimatrix, orthogonalityweight, SetindexInterlace
-import ContinuumArrays: Weight, weight, grid, ℵ₁, ℵ₀, unweighted, plan_transform
+import ContinuumArrays: Weight, weight, grid, ℵ₁, ℵ₀, unweighted, plan_transform, @simplify
 import HarmonicOrthogonalPolynomials: BivariateOrthogonalPolynomial, MultivariateOrthogonalPolynomial, Plan
 import MultivariateOrthogonalPolynomials: BlockOneTo, ModalInterlace, laplacian, ModalTrav
 import SemiclassicalOrthogonalPolynomials: divdiff, HalfWeighted, SemiclassicalJacobiFamily

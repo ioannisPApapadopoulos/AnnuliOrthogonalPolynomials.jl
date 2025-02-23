@@ -74,4 +74,19 @@ getindex(P::JacobiDiskSlice, 𝐱::StaticVector{2}, B::Block{1}) = [P[𝐱, B[j]
 getindex(P::JacobiDiskSlice, 𝐱::StaticVector{2}, JR::BlockOneTo) = mortar([P[𝐱,Block(J)] for J = 1:Int(JR[end])])
 
 
+###
+# jacobimatrix
+###
+
 jacobimatrix(::Val{1}, P::JacobiDiskSlice) = ColumnInterlace(BroadcastVector{AbstractMatrix{Float64}}((α,Pₖ) -> (α-1)*jacobimatrix(Pₖ) + I, P.α, P.P), (ℵ₀,ℵ₀), (1,1))
+
+
+###
+# raising
+####
+
+@simplify function \(Q::JacobiDiskSlice, P::JacobiDiskSlice)
+    T = promote_type(eltype(Q), eltype(P))
+    @assert Q.a == P.a + 1 && Q.b == P.b
+    ColumnInterlace(BroadcastVector{AbstractMatrix{T}}(\, Q.P, P.P), (ℵ₀,ℵ₀), (0,1))
+end
