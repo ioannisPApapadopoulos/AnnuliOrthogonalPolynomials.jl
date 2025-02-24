@@ -148,6 +148,7 @@ using QuadGK
             D = Q.P[k+1] \ diff(P.P[k+1])
             R_U = Ultraspherical(3/2) \ Ultraspherical(1/2)
             D_U = Ultraspherical(3/2) \ diff(Ultraspherical(1/2))
+            Lₖ = Weighted(Q.P[k]) \ Weighted(Q.P[k+1])
             τ = (x-1)/(α-1)
             @test Pₓ ≈ 1/(α-1) * (Q.P[k+1][τ,n-k-1]*D[n-k-1,n-k+1] + Q.P[k+1][τ,n-k]*D[n-k,n-k+1]) * ρ^k * U[y/ρ,k+1] +
             -x * k * P.P[k+1][τ,n-k+1] * ρ^(k-2) * U[y/ρ,k+1] +
@@ -156,7 +157,16 @@ using QuadGK
             (α-1)*τ * (t-τ) * Q.P[k+1][τ,n-k-1] * ρ^(k-2) *C[y/ρ,k-1]D[n-k-1,n-k+1]R_U[k-1,k+1] +
             1/(α-1) * Q.P[k+1][τ,n-k]*D[n-k,n-k+1] * ρ^k * (C[y/ρ,k+1]R_U[k+1,k+1] + C[y/ρ,k-1]R_U[k-1,k+1]) +
             -x * k * P.P[k+1][τ,n-k+1] * ρ^(k-2) * (C[y/ρ,k+1]R_U[k+1,k+1] + C[y/ρ,k-1]R_U[k-1,k+1]) +
-            x * y * P.P[k+1][τ,n-k+1] * ρ^(k-3) * C[y/ρ,k]D_U[k,k+1]
+            x *  P.P[k+1][τ,n-k+1] * ρ^(k-2) * y/ρ * C[y/ρ,k]D_U[k,k+1] ≈
+            1/(α-1) * Q[𝐱, Block(n-1)[k+1]]D[n-k-1,n-k+1]R_U[k+1,k+1] + 
+            Q.P[k][τ,n-k-1]* ρ^(k-2) * C[y/ρ,k-1]* (α-1) * Lₖ[n-k-1,n-k-1]D[n-k-1,n-k+1]R_U[k-1,k+1] +
+            Q.P[k][τ,n-k]*Lₖ[n-k,n-k-1]* ρ^(k-2) * C[y/ρ,k-1]* (α-1)*D[n-k-1,n-k+1]R_U[k-1,k+1] + 
+            Q.P[k][τ,n-k+1]*Lₖ[n-k+1,n-k-1]* ρ^(k-2) * (α-1) * C[y/ρ,k-1]D[n-k-1,n-k+1]R_U[k-1,k+1] +
+            1/(α-1) * Q.P[k+1][τ,n-k]* ρ^k * C[y/ρ,k+1]D[n-k,n-k+1]R_U[k+1,k+1] + 
+            1/(α-1) * Q.P[k+1][τ,n-k] * ρ^k *C[y/ρ,k-1]D[n-k,n-k+1]R_U[k-1,k+1] +
+            -x * k * P.P[k+1][τ,n-k+1] * ρ^(k-2) * C[y/ρ,k+1]R_U[k+1,k+1] +
+            -x * k * P.P[k+1][τ,n-k+1] * ρ^(k-2) * C[y/ρ,k-1]R_U[k-1,k+1] +
+            x *  P.P[k+1][τ,n-k+1] * ρ^(k-2) * y/ρ * C[y/ρ,k]D_U[k,k+1]
         end
 
         @testset "d/dy" begin
