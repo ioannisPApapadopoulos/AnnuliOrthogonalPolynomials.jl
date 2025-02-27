@@ -1,9 +1,11 @@
 name = "AnnuliOrthogonalPolynomials"
 uuid = "de1797fd-24c3-4035-91a2-b52aecdcfb01"
 authors = ["john.papad "]
-version = "0.1"
+version = "0.1.0"
 
 [deps]
+ArrayLayouts = "4c555306-a7a7-4459-81d9-ec55ddd5c99a"
+BandedMatrices = "aae01518-5342-5314-be14-df237901396f"
 BlockArrays = "8e7c35d0-a365-5155-bbbb-fb81a777f24e"
 BlockBandedMatrices = "ffab5731-97b5-5995-9138-79e8c1846df0"
 ClassicalOrthogonalPolynomials = "b30e2e7b-c4ee-47da-9d5f-2c5c27239acd"
@@ -12,7 +14,9 @@ DomainSets = "5b8099bc-c8ec-5219-889f-1d9e522a28bf"
 FastTransforms = "057dd010-8810-581a-b7be-e3fc3b93f78c"
 FillArrays = "1a297f60-69ca-5386-bcde-b61e274b549b"
 HarmonicOrthogonalPolynomials = "e416a80e-9640-42f3-8df8-80a93ca01ea5"
+InfiniteArrays = "4858937d-0d70-526a-a4dd-2d5cb5dd786c"
 LazyArrays = "5078a376-72f3-5289-bfd5-ec5146d43c02"
+LazyBandedMatrices = "d7e5e226-e90b-4449-9968-0f923699bf6f"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 MultivariateOrthogonalPolynomials = "4f6956fd-4f93-5457-9149-7bfc4b2ce06d"
 QuasiArrays = "c4ea9172-b204-11e9-377d-29865faadc5c"
@@ -20,6 +24,8 @@ SemiclassicalOrthogonalPolynomials = "291c01f3-23f6-4eb6-aeb0-063a639b53f2"
 StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 
 [compat]
+ArrayLayouts = "1.11.1"
+BandedMatrices = "1.9.1"
 BlockArrays = "1.1"
 BlockBandedMatrices = "0.13"
 ClassicalOrthogonalPolynomials = "0.15"
@@ -28,8 +34,11 @@ DomainSets = "0.7"
 FastTransforms = "0.17"
 FillArrays = "1"
 HarmonicOrthogonalPolynomials = "0.7"
+InfiniteArrays = "0.15.5"
 LazyArrays = "2.1"
+LazyBandedMatrices = "0.11.4"
 MultivariateOrthogonalPolynomials = "0.9"
+QuadGK = "2"
 QuasiArrays = "0.12"
 SemiclassicalOrthogonalPolynomials = "0.7"
 StaticArrays = "1"
@@ -37,8 +46,9 @@ julia = "1.10"
 
 [extras]
 ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
+QuadGK = "1fd47b50-473d-5c70-9696-f719f8f3bcdc"
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["ForwardDiff", "Random", "Test"]
+test = ["ForwardDiff", "QuadGK", "Random", "Test"]

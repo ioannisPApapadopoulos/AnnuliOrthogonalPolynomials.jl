@@ -4,3 +4,4 @@
 using AnnuliOrthogonalPolynomials, Test
 
 include("test_annulus.jl")
+include("test_diskslice.jl")
